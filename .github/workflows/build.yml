@@ -11,15 +11,22 @@ jobs:
       - name: Télécharger nxnative
         uses: actions/checkout@v4
 
-      - name: Vérifier macOS et Xcode
+      - name: Vérifier les exigences
         run: |
+          echo "=== macOS ==="
           sw_vers
-          xcodebuild -version
-          xcrun --sdk iphoneos --show-sdk-version
 
-      - name: Vérifier les outils disponibles
-        run: |
+          echo "=== Architecture ==="
+          uname -m
+
+          echo "=== Xcode ==="
+          xcodebuild -version
+
+          echo "=== Python ==="
           python3 --version
+
+          echo "=== Homebrew ==="
           brew --version
-          df -h .
-          ls -la scripts/
+
+          echo "=== Plateforme iOS ==="
+          xcrun --sdk iphoneos --show-sdk-version
