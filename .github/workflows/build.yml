@@ -27,6 +27,17 @@ jobs:
 
           echo "=== Homebrew ==="
           brew --version
+                - name: Vérifier les exigences
+        run: |
+          echo "=== macOS ==="
+          sw_vers
+
+      - name: Rechercher les versions de Xcode
+        run: |
+          echo "=== Versions de Xcode installées ==="
+          ls -d /Applications/Xcode*.app 2>/dev/null || true
+          echo "=== Xcode actuellement sélectionné ==="
+          xcode-select -p
 
           echo "=== Plateforme iOS ==="
           xcrun --sdk iphoneos --show-sdk-version
