@@ -1,0 +1,25 @@
+name: Test nxnative macOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-macos:
+    runs-on: macos-15
+
+    steps:
+      - name: Télécharger nxnative
+        uses: actions/checkout@v4
+
+      - name: Vérifier macOS et Xcode
+        run: |
+          sw_vers
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-version
+
+      - name: Vérifier les outils disponibles
+        run: |
+          python3 --version
+          brew --version
+          df -h .
+          ls -la scripts/
